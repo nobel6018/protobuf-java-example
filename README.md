@@ -13,10 +13,12 @@ protoc --java_out=src/main/java ./src/main/java/com/example/tutorial/schema/addr
 
 
 ## 공부한 내용 가볍게 정리
-### 1. proto와 message 내용이 동일하면 에러가 발생한다
+### 1. proto 파일명과 message 이름이 동일하면 에러가 발생한다
+- **addressbook**.proto 파일이라고 명명하고 .proto 파일에 message **AddressBook** 가 있으면
+- **AddressBook**.java에는 public class **Addressbook**이 생성되서
+- AddressBook.newBuilder()가 당연히 호출이 안된다
+
+에러 메시지 내용
 ```text
 [libprotobuf WARNING google/protobuf/compiler/java/java_file.cc:232] src/main/java/com/example/tutorial/addressbook/schema/addressbook.proto: The file's outer class name, "Addressbook", matches the name of one of the types declared inside it when case is ignored. This can cause compilation issues on Windows / MacOS. Please either rename the type or use the java_outer_classname option to specify a different outer class name for the .proto file to be safe.
 ```
-- addressbook.proto 파일이라고 명명하고 message AddressBook 가 있으면
-- AddressBook.java는 public class Addressbook이 생성되서
-- AddressBook.newBuilder()가 당연히 호출이 안된다
